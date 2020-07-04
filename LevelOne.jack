@@ -1,4 +1,7 @@
 class LevelOne {
+    field boolean switchOne;
+    field boolean switchTwo;
+
     constructor LevelOne new() {
         return this;
     }
@@ -9,6 +12,16 @@ class LevelOne {
     }
 
     method void render() {
+        var int floorSize;
+        var int floorCounter;
+        let floorSize = 32;
+        let floorCounter = 0;
+
+        // draw the bottom floor
+        while (floorCounter < floorSize) {
+            do SpriteBrick.draw(floorCounter, 15);
+            let floorCounter = floorCounter + 1;
+        }
         return;
     }
 }

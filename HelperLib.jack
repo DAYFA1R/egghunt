@@ -1,0 +1,9 @@
+class HelperLib {
+    // (assuming that for this project we draw 16x16)
+    // takes in a co-ord for X of 0-31 (512 / 16)
+    // takes in a co-ord for Y of 0-15 (256 / 16)
+    // returns back the top left pixel of the supplied co-ord for drawing
+    function int locationCalc(int atX, int atY) {
+        return (32 * (atY * 16)) + ((atX * 16) / 16);
+    }
+}

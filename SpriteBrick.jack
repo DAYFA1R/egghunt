@@ -1,0 +1,27 @@
+class SpriteBrick {
+    function void draw(int atX, int atY) {
+        var int memAddress;
+        let memAddress = 16384 + HelperLib.locationCalc(atX, atY);
+        do Memory.poke(memAddress+0, -1029);
+        do Memory.poke(memAddress+32, -1029);
+        do Memory.poke(memAddress+64, -1029);
+        do Memory.poke(memAddress+96, 0);
+        do Memory.poke(memAddress+128, -16449);
+        do Memory.poke(memAddress+160, -16449);
+        do Memory.poke(memAddress+192, -16449);
+        do Memory.poke(memAddress+224, 0);
+        do Memory.poke(memAddress+256, -1029);
+        do Memory.poke(memAddress+288, -1029);
+        do Memory.poke(memAddress+320, -1029);
+        do Memory.poke(memAddress+352, 0);
+        do Memory.poke(memAddress+384, -16449);
+        do Memory.poke(memAddress+416, -16449);
+        do Memory.poke(memAddress+448, -16449);
+        do Memory.poke(memAddress+480, 0);
+        return;
+    }
+
+    function void clear() {
+        return;
+    }
+}

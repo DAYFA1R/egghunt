@@ -1,8 +1,8 @@
 class Game {
+    field LevelOne levelOne;
     field int level;
     field int score;
     field int time;
-    field LevelOne levelOne;
 
     constructor Game new() {
         let level = 1;
@@ -16,14 +16,12 @@ class Game {
     }
     method void run() {
         var boolean exit;
-
         let exit = false;
 
         while (~exit) {
             if (level & 1) {
                 do levelOne.render();
             }
-
         }
         return;
     }
