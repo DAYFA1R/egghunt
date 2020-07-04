@@ -1,0 +1,30 @@
+class Game {
+    field int level;
+    field int score;
+    field int time;
+    field LevelOne levelOne;
+
+    constructor Game new() {
+        let level = 1;
+        let levelOne = LevelOne.new();
+        return this;
+    }
+
+    method void dispose() {
+        do Memory.deAlloc(this);
+        return;
+    }
+    method void run() {
+        var boolean exit;
+
+        let exit = false;
+
+        while (~exit) {
+            if (level & 1) {
+                do levelOne.render();
+            }
+
+        }
+        return;
+    }
+}

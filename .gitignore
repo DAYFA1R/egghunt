@@ -2,3 +2,4 @@ samples/
 tools/
 *.sh
 *.vm
+.vscode/
