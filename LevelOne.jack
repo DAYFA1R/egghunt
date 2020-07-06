@@ -1,8 +1,12 @@
 class LevelOne {
     field boolean switchOne;
     field boolean switchTwo;
+    field Player player;
 
     constructor LevelOne new() {
+        let switchOne = false;
+        let switchTwo = false;
+        let player = Player.new(0,14);
         return this;
     }
 
@@ -11,7 +15,7 @@ class LevelOne {
         return;
     }
 
-    method void render() {
+    method void renderLevel() {
         var int floorSize;
         var int floorCounter;
         let floorSize = 32;
@@ -22,6 +26,31 @@ class LevelOne {
             do SpriteBrick.draw(floorCounter, 15);
             let floorCounter = floorCounter + 1;
         }
+
+        do SpriteLadder.draw(12, 14);
+        do SpriteLadder.draw(12, 13);
+        do SpriteLadder.draw(12, 12);
+        do SpriteLadder.draw(12, 11);
+        do SpriteLadder.draw(12, 10);
+        
+        do SpriteEgg.draw(30,14);
+
+        return;
+    }
+
+    method void updateView() {
+        do player.clear();
+        do renderLevel();
+        do player.render();
+        return;
+    }
+
+    method Player getPlayer() {
+        return player;
+    }
+
+    method void setPlayer(Player argPlayer) {
+        let player = argPlayer;
         return;
     }
 }

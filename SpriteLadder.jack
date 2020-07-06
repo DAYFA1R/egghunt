@@ -1,0 +1,27 @@
+class SpriteLadder {
+    function void draw(int atX, int atY) {
+        var int memAddress;
+        let memAddress = 16384 + HelperLib.locationCalc(atX, atY);
+        do Memory.poke(memAddress+0, 28686);
+        do Memory.poke(memAddress+32, -1);
+        do Memory.poke(memAddress+64, -1);
+        do Memory.poke(memAddress+96, 28686);
+        do Memory.poke(memAddress+128, 28686);
+        do Memory.poke(memAddress+160, -1);
+        do Memory.poke(memAddress+192, -1);
+        do Memory.poke(memAddress+224, 28686);
+        do Memory.poke(memAddress+256, 28686);
+        do Memory.poke(memAddress+288, -1);
+        do Memory.poke(memAddress+320, -1);
+        do Memory.poke(memAddress+352, 28686);
+        do Memory.poke(memAddress+384, 28686);
+        do Memory.poke(memAddress+416, -1);
+        do Memory.poke(memAddress+448, -1);
+        do Memory.poke(memAddress+480, 28686);
+        return;
+    }
+
+    function void clear(int atX, int atY) {
+        return;
+    }
+}

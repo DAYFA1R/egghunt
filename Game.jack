@@ -1,28 +1,76 @@
 class Game {
+    field int level, action, counter;
     field LevelOne levelOne;
-    field int level;
-    field int score;
-    field int time;
 
     constructor Game new() {
-        let level = 1;
+        let level = 0;
+        let action = 0;
+        let counter = 0;
         let levelOne = LevelOne.new();
         return this;
     }
 
-    method void dispose() {
-        do Memory.deAlloc(this);
-        return;
-    }
     method void run() {
+        var char key;
         var boolean exit;
+
         let exit = false;
 
-        while (~exit) {
-            if (level & 1) {
-                do levelOne.render();
+        do levelOne.updateView();
+
+        while(~exit) {
+            do Output.moveCursor(0, 0);
+            do Output.printString("MOVES MADE:");
+            do Output.printInt(counter);
+            do Output.moveCursor(0, 32);
+            do Output.printString("LEVEL:");
+            do Output.printInt(level);
+            let counter = counter + 1;
+
+            while(key=0) {
+                let key = Keyboard.keyPressed();
+                do handleAction();
             }
+            if (key = 131) {
+                let action = 1;
+            }
+            if (key = 133) {
+                let action = 2;
+            }
+            
+            if (key = 130) {
+                let action = 3;
+            }
+            if (key = 132) {
+                let action = 4;
+            }
+            if (key = 32) {
+                let action = 5;
+            }
+            let key = 0;
+            do Sys.wait(100);
         }
+        return;
+    }
+
+    method void handleAction() {
+        var Player player;
+        let player = levelOne.getPlayer();
+
+        if (action = 3) {
+            do player.moveLeft();
+            // do levelOne.setPlayer(player);
+            do levelOne.updateView();
+        }
+
+        if (action = 4) {
+            do player.moveRight();
+            // do levelOne.setPlayer(player);
+            do levelOne.updateView();
+        }
+        
+        let action = 0;
+
         return;
     }
 }

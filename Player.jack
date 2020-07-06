@@ -1,0 +1,44 @@
+class Player {
+    field int x, y, lastX, lastY;
+
+    constructor Player new(int argX, int argY) {
+        let x = argX;
+        let y = argY;
+        let lastX = argX;
+        let lastY = argY;
+        return this;
+    }
+
+    method void dipose() {
+        do Memory.deAlloc(this);
+        return;
+    }
+
+    method void render() {
+        do SpriteDino.draw(x, y);
+        return;
+    }
+
+    method void clear() {
+        do SpriteDino.clear(lastX, lastY);
+        return;
+    }
+
+    method void moveLeft() {
+        if (x > 0) {
+            let lastX = x;
+            let x = x - 1;
+        }
+        // do Output.printString("fired left  in Player");
+        return;
+    }
+
+    method void moveRight() {
+        if ((x + 1) < 32) {
+            let lastX = x;
+            let x = x + 1;
+        }
+        // do Output.printString("fired right in Player");
+        return;
+    }
+}
