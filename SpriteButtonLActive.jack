@@ -1,0 +1,27 @@
+class SpriteButtonLActive {
+    function void draw(int atX, int atY) {
+        var int memAddress;
+        let memAddress = 16384 + HelperLib.locationCalc(atX, atY);
+        do Memory.poke(memAddress+0, 0);
+        do Memory.poke(memAddress+32, 511);
+        do Memory.poke(memAddress+64, 256);
+        do Memory.poke(memAddress+96, 3340);
+        do Memory.poke(memAddress+128, 3352);
+        do Memory.poke(memAddress+160, 3376);
+        do Memory.poke(memAddress+192, 3352);
+        do Memory.poke(memAddress+224, 3852);
+        do Memory.poke(memAddress+256, 3864);
+        do Memory.poke(memAddress+288, 3376);
+        do Memory.poke(memAddress+320, 3352);
+        do Memory.poke(memAddress+352, 3340);
+        do Memory.poke(memAddress+384, 3328);
+        do Memory.poke(memAddress+416, 256);
+        do Memory.poke(memAddress+448, 511);
+        do Memory.poke(memAddress+480, 0);
+        return;
+    }
+
+    function void clear(int atX, int atY) {
+        return;
+    }
+}

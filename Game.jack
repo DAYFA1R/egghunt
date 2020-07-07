@@ -1,12 +1,11 @@
 class Game {
-    field int level, action, counter;
-    field LevelOne levelOne;
+    field int action, counter;
+    field World world;
 
     constructor Game new() {
-        let level = 0;
         let action = 0;
         let counter = 0;
-        let levelOne = LevelOne.new();
+        let world = World.new(0);
         return this;
     }
 
@@ -14,89 +13,120 @@ class Game {
         var char key;
         var boolean exit;
 
-        let exit = false;
+        while (world.hasNextLevel()) {
+            let exit = false;
+            do world.renderFrame();
 
-        do levelOne.updateView();
+            while(~exit) {
+                // UI
+                do Output.moveCursor(0, 0);
+                do Output.printString("MOVES MADE:");
+                do Output.printInt(counter);
+                do Output.moveCursor(0, 32);
+                do Output.printString("LEVEL:");
+                do Output.printInt(world.getLevel() + 1);
+                do Output.moveCursor(1, 0);
 
-        while(~exit) {
-            do Output.moveCursor(0, 0);
-            do Output.printString("MOVES MADE:");
-            do Output.printInt(counter);
-            do Output.moveCursor(0, 32);
-            do Output.printString("LEVEL:");
-            do Output.printInt(level);
-            do Output.moveCursor(1, 0);
-            let counter = counter + 1;
+                // Keypress listener
+                while(key=0) {
+                    let key = Keyboard.keyPressed();
+                }
+                // Up Arrow
+                if (key = 131) {
+                    let action = 1;
+                }
+                // Down arrow
+                if (key = 133) {
+                    let action = 2;
+                }
+                // Left Arrow
+                if (key = 130) {
+                    let action = 3;
+                }
+                // Right Arrow
+                if (key = 132) {
+                    let action = 4;
+                }
+                // Space
+                if (key = 32) {
+                    let action = 5;
+                }
 
-            while(key=0) {
-                let key = Keyboard.keyPressed();
-                do handleAction();
+                // handle the action resulting from the keypress
+                // or check win condition
+                if (handleAction()) {
+                    let exit = true;
+                }
+
+                do world.renderFrame();
+                let key = 0;
+                do Sys.wait(100);
             }
-            if (key = 131) {
-                let action = 1;
-            }
-            if (key = 133) {
-                let action = 2;
-            }
-            
-            if (key = 130) {
-                let action = 3;
-            }
-            if (key = 132) {
-                let action = 4;
-            }
-            if (key = 32) {
-                let action = 5;
-            }
-            let key = 0;
-            do Sys.wait(100);
+
+            do Screen.clearScreen();
+            do world.setNextLevel();
         }
+
         return;
     }
 
-    method void handleAction() {
+    method boolean handleAction() {
         var Player player;
-        let player = levelOne.getPlayer();
+        let player = world.getActivePlayer();
 
         // move up
         if (action = 1) {
             // only if in contact w/ ladder
-            if (levelOne.hitCheck(1)) {
+            if (world.checkHitTests(1)) {
                 do player.moveUp();
-                do levelOne.updateView();
+                // do world.renderFrame();
+                let counter = counter + 1;
             }
         }
 
         // move up
         if (action = 2) {
             // only if in contact w/ ladder
-            if (levelOne.hitCheck(2)) {
+            if (world.checkHitTests(2)) {
                 do player.moveDown();
-                do levelOne.updateView();
+                // do world.renderFrame();
+                let counter = counter + 1;
             }
         }
 
         // move left
         if (action = 3) {
-            do player.moveLeft();
-            do levelOne.updateView();
+            // only if on a floor
+            if (world.checkHitTests(3)) {
+                do player.moveLeft();
+                // do world.renderFrame();
+                let counter = counter + 1;
+            }
         }
 
         // move right
         if (action = 4) {
-            do player.moveRight();
-            do levelOne.updateView();
+            // only if on a floor
+            if (world.checkHitTests(4)) {
+                do player.moveRight();
+                // do world.renderFrame();
+                let counter = counter + 1;
+            }
+        }
+
+        if (action = 5) {
+            do world.checkHitTests(5);
         }
 
         // consistently check for goal
         if (~(action = 0)) {
-            if (levelOne.hitCheck(0)) {
-                let level = level + 1;
+            if (world.checkHitTests(0)) {
+                return true;
             }
         }
-
+        // do world.renderFrame();
         let action = 0;
 
-        return;
+        return false;
     }
 }

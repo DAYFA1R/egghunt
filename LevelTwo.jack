@@ -1,9 +1,11 @@
-class LevelOne {
-    field boolean complete;
+class LevelTwo {
+    field int frame;
+    field boolean switchOne;
     field Player player;
 
-    constructor LevelOne new() {
-        let complete = false;
+    constructor LevelTwo new() {
+        let frame = 0;
+        let switchOne = false;
         let player = Player.new(1,14);
         return this;
     }
@@ -25,13 +27,27 @@ class LevelOne {
             let floorCounter = floorCounter + 1;
         }
 
-        let floorSize = 32;
         let floorCounter = 13;
 
-        // draw the top floor
+        // draw the bottom-mid floor
         while (floorCounter < floorSize) {
             do SpriteBrick.draw(floorCounter, 10);
             let floorCounter = floorCounter + 1;
+        }
+
+        // draw the bounding box
+        do SpriteBrick.draw(11, 10);
+        do SpriteBrick.draw(10, 10);
+        do SpriteBrick.draw(9, 10);
+        do SpriteBrick.draw(9, 9);
+        do SpriteBrick.draw(9, 8);
+        do SpriteBrick.draw(9, 7);
+
+        // draw the button
+        if (~switchOne) {
+            do SpriteButtonL.draw(10, 9);
+        } else {
+            do SpriteButtonLActive.draw(10, 9);
         }
 
         // Draw Ladder 1
@@ -41,7 +57,40 @@ class LevelOne {
         do SpriteLadder.draw(12, 11);
         do SpriteLadder.draw(12, 10);
         
-        do SpriteEgg.draw(30,9);
+        let floorCounter = 22;
+
+        // draw the top-mid floor
+        while (floorCounter < floorSize) {
+            do SpriteBrick.draw(floorCounter, 6);
+            let floorCounter = floorCounter + 1;
+        }
+
+        // Draw Ladder 2
+        do SpriteLadder.draw(21, 9);
+        do SpriteLadder.draw(21, 8);
+        do SpriteLadder.draw(21, 7);
+        do SpriteLadder.draw(21, 6);
+
+        // draw bounding box
+        do SpriteBrick.draw(28, 4);
+        do SpriteBrick.draw(28, 3);
+        do SpriteBrick.draw(29, 3);
+        do SpriteBrick.draw(30, 3);
+        do SpriteBrick.draw(31, 3);
+
+        // draw the barrier
+        if (~switchOne) {
+            if (frame = 0) {
+                do SpriteZap.draw(28, 5);
+            } else {
+                do SpriteZapAlt.draw(28, 5);
+            }
+        } else {
+            do SpriteZap.clear(28, 5);
+        }
+
+        // draw the goal
+        do SpriteEgg.draw(30,5);
 
         return;
     }
@@ -50,11 +99,19 @@ class LevelOne {
         do player.clear();
         do renderEnvironment();
         do player.render();
+        let frame = toggleFrame(frame);
         return;
     }
 
     method Player getPlayer() {
         return player;
+    }
+
+    method int toggleFrame(int sourceFrame) {
+        if (sourceFrame = 0) {
+            return 1;
+        }
+        return 0;
     }
 
     method boolean hitTest(int checkCondition) {
@@ -68,9 +125,8 @@ class LevelOne {
         // Check win condition
         if (checkCondition=0) {
             // If player on goal
-            if ((player.getX() = 30) & (player.getY() = 9)) {
+            if ((player.getX() = 22) & (player.getY() = 4)) {
                 // do Output.printString("clr");
-                let complete = true;
                 return true;
             } else {
                 
@@ -105,7 +161,7 @@ class LevelOne {
                 ) |
                 (
                     (player.getY() = 9) &
-                    (player.getX() > 12)
+                    (player.getX() > 11)
                 )
             ) {
                 return true;
@@ -119,6 +175,21 @@ class LevelOne {
             }
         }
 
+        // Hitting switch
+        if (checkCondition=5) {
+            if ((player.getX() = 11) & (player.getY() = 9)) {
+                let switchOne = toggleSwitchOne(switchOne);
+                return true;
+            }
+        }
+
         return false;
+    }
+
+    method boolean toggleSwitchOne(boolean sourceState) {
+        if (sourceState) {
+            return false;
+        }
+        return true;
     }
 }

@@ -1,0 +1,75 @@
+class World {
+    field int level;
+    field LevelOne levelOne;
+    field LevelTwo levelTwo;
+
+    constructor World new(int startingLevel) {
+        let level = startingLevel;
+        if (startingLevel=0) {
+            let levelOne = LevelOne.new();
+        }
+        if (startingLevel=1) {
+            let levelTwo = LevelTwo.new();
+        }
+        return this;
+    }
+
+    method void dispose() {
+        do Memory.deAlloc(this);
+        return;
+    }
+
+    method void renderFrame() {
+        if (level=0) {
+            do levelOne.render();
+        }
+        if (level=1) {
+            do levelTwo.render();
+        }
+        return;
+    }
+
+    method Player getActivePlayer() {
+        var Player player;
+        if (level=0) {
+            let player = levelOne.getPlayer();
+        }
+        if (level=1) {
+            let player = levelTwo.getPlayer();
+        }
+        return player;
+    }
+
+    method boolean checkHitTests(int condition) {
+        if (level=0) {
+            return levelOne.hitTest(condition);
+        }
+        if (level=1) {
+            return levelTwo.hitTest(condition);
+        }
+
+        return false;
+    }
+
+    method void setNextLevel() {
+        if (level = 0) {
+            do levelOne.dispose();
+            let levelTwo = LevelTwo.new();
+        }
+
+        let level = level + 1;
+        return;
+    }
+
+    method int getLevel() {
+        return level;
+    }
+
+    method boolean hasNextLevel() {
+        if (level < 2) {
+            return true;
+        }
+
+        return false;
+    }
+}

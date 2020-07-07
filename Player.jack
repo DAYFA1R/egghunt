@@ -9,7 +9,7 @@ class Player {
         return this;
     }
 
-    method void dipose() {
+    method void dispose() {
         do Memory.deAlloc(this);
         return;
     }

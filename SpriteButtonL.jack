@@ -1,0 +1,27 @@
+class SpriteButtonL {
+    function void draw(int atX, int atY) {
+        var int memAddress;
+        let memAddress = 16384 + HelperLib.locationCalc(atX, atY);
+        do Memory.poke(memAddress+0, 0);
+        do Memory.poke(memAddress+32, 511);
+        do Memory.poke(memAddress+64, 256);
+        do Memory.poke(memAddress+96, 24844);
+        do Memory.poke(memAddress+128, 24856);
+        do Memory.poke(memAddress+160, 24880);
+        do Memory.poke(memAddress+192, 24856);
+        do Memory.poke(memAddress+224, 32524);
+        do Memory.poke(memAddress+256, 32536);
+        do Memory.poke(memAddress+288, 24880);
+        do Memory.poke(memAddress+320, 24856);
+        do Memory.poke(memAddress+352, 24844);
+        do Memory.poke(memAddress+384, 24832);
+        do Memory.poke(memAddress+416, 256);
+        do Memory.poke(memAddress+448, 511);
+        do Memory.poke(memAddress+480, 0);
+        return;
+    }
+
+    function void clear(int atX, int atY) {
+        return;
+    }
+}
