@@ -25,6 +25,7 @@ class Game {
             do Output.moveCursor(0, 32);
             do Output.printString("LEVEL:");
             do Output.printInt(level);
+            do Output.moveCursor(1, 0);
             let counter = counter + 1;
 
             while(key=0) {
@@ -57,6 +58,13 @@ class Game {
         var Player player;
         let player = levelOne.getPlayer();
 
+        if (action = 1) {
+            if (levelOne.hitCheck(1)) {
+                do player.moveUp();
+                do levelOne.updateView();
+            }
+        }
+
         if (action = 3) {
             do player.moveLeft();
             // do levelOne.setPlayer(player);
@@ -68,7 +76,12 @@ class Game {
             // do levelOne.setPlayer(player);
             do levelOne.updateView();
         }
-        
+        if (~(action = 0)) {
+            if (levelOne.hitCheck(0)) {
+                do Output.printChar("c");
+            }
+        }
+
         let action = 0;
 
         return;

@@ -27,18 +27,44 @@ class Player {
     method void moveLeft() {
         if (x > 0) {
             let lastX = x;
+            let lastY = y;
             let x = x - 1;
         }
-        // do Output.printString("fired left  in Player");
         return;
     }
 
     method void moveRight() {
         if ((x + 1) < 32) {
             let lastX = x;
+            let lastY = y;
             let x = x + 1;
         }
-        // do Output.printString("fired right in Player");
         return;
+    }
+
+    method void moveUp() {
+        if (y > 0) {
+            let lastX = x;
+            let lastY = y;
+            let y = y - 1;
+        }
+        return;
+    }
+
+    method void moveDown() {
+        if ((y + 1) < 16) {
+            let lastX = x;
+            let lastY = y;
+            let y = y + 1;
+        }
+        return;
+    }
+
+    method int getX() {
+        return x;
+    }
+
+    method int getY() {
+        return y;
     }
 }
