@@ -58,27 +58,40 @@ class Game {
         var Player player;
         let player = levelOne.getPlayer();
 
+        // move up
         if (action = 1) {
+            // only if in contact w/ ladder
             if (levelOne.hitCheck(1)) {
                 do player.moveUp();
                 do levelOne.updateView();
             }
         }
 
+        // move up
+        if (action = 2) {
+            // only if in contact w/ ladder
+            if (levelOne.hitCheck(2)) {
+                do player.moveDown();
+                do levelOne.updateView();
+            }
+        }
+
+        // move left
         if (action = 3) {
             do player.moveLeft();
-            // do levelOne.setPlayer(player);
             do levelOne.updateView();
         }
 
+        // move right
         if (action = 4) {
             do player.moveRight();
-            // do levelOne.setPlayer(player);
             do levelOne.updateView();
         }
+
+        // consistently check for goal
         if (~(action = 0)) {
             if (levelOne.hitCheck(0)) {
-                do Output.printChar("c");
+                let level = level + 1;
             }
         }
 
