@@ -125,7 +125,7 @@ class LevelTwo {
         // Check win condition
         if (checkCondition=0) {
             // If player on goal
-            if ((player.getX() = 22) & (player.getY() = 4)) {
+            if ((player.getX() = 30) & (player.getY() = 5)) {
                 // do Output.printString("clr");
                 return true;
             } else {
@@ -137,6 +137,10 @@ class LevelTwo {
         if (checkCondition=1) {
             // Ladder 1
             if ((player.getX() = 12) & (player.getY() > 9)) {
+                return true;
+            }
+            // Ladder 2
+            if ((player.getX() = 21) & (player.getY() > 5)) {
                 return true;
             }
         }
@@ -151,6 +155,14 @@ class LevelTwo {
             ) {
                 return true;
             }
+            // Ladder 2
+            if (
+                (player.getX() = 21) &
+                (player.getY() > 4) &
+                (player.getY() < 9)
+            ) {
+                return true;
+            }
         }
 
         // Moving Left
@@ -162,6 +174,10 @@ class LevelTwo {
                 (
                     (player.getY() = 9) &
                     (player.getX() > 11)
+                ) |
+                (
+                    (player.getY() = 5) &
+                    (player.getX() > 21)
                 )
             ) {
                 return true;
@@ -171,6 +187,16 @@ class LevelTwo {
         // Moving Right
         if (checkCondition=4) {
             if ((player.getY() = 14) | (player.getY() = 9)) {
+                return true;
+            }
+            if (
+                (player.getY() = 5) &
+                (player.getX() < 27) &
+                (~switchOne)
+            ) {
+                return true;
+            }
+            if ((player.getY() = 5) & switchOne) {
                 return true;
             }
         }
