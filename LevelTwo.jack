@@ -33,11 +33,7 @@ class LevelTwo {
         do SpriteBrick.draw(9, 7);
 
         // draw the button
-        if (~switchOne) {
-            do SpriteButtonL.draw(10, 9);
-        } else {
-            do SpriteButtonLActive.draw(10, 9);
-        }
+        do HelperLib.createButton(switchOne, 10, 9);
 
         // Draw Ladder 1
         do HelperLib.createLadder(12, 14, 5);
@@ -56,15 +52,7 @@ class LevelTwo {
         do SpriteBrick.draw(31, 3);
 
         // draw the barrier
-        if (~switchOne) {
-            if (frame) {
-                do SpriteZap.draw(28, 5);
-            } else {
-                do SpriteZapAlt.draw(28, 5);
-            }
-        } else {
-            do SpriteZap.clear(28, 5);
-        }
+        do HelperLib.createGate(switchOne, 28, 5, frame);
 
         // draw the goal
         do SpriteEgg.draw(GOAL_X, GOAL_Y);

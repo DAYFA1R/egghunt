@@ -33,4 +33,26 @@ class HelperLib {
         }
         return;
     }
+
+    function void createButton(boolean toggle, int atX, int atY) {
+        if (~toggle) {
+            do SpriteButtonL.draw(atX, atY);
+        } else {
+            do SpriteButtonLActive.draw(atX, atY);
+        }
+        return;
+    }
+
+    function void createGate(boolean toggle, int atX, int atY, boolean frameState) {
+        if (~toggle) {
+            if (frameState) {
+                do SpriteZap.draw(atX, atY);
+            } else {
+                do SpriteZapAlt.draw(atX, atY);
+            }
+        } else {
+            do SpriteZap.clear(atX, atY);
+        }
+        return;
+    }
 }
