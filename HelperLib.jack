@@ -34,11 +34,19 @@ class HelperLib {
         return;
     }
 
-    function void createButton(boolean toggle, int atX, int atY) {
+    function void createButton(boolean direction, boolean toggle, int atX, int atY) {
         if (~toggle) {
-            do SpriteButtonL.draw(atX, atY);
+            if (direction) {
+                do SpriteButtonL.draw(atX, atY);
+            } else {
+                do SpriteButtonR.draw(atX, atY);
+            }
         } else {
-            do SpriteButtonLActive.draw(atX, atY);
+            if (direction) {
+                do SpriteButtonLActive.draw(atX, atY);
+            } else {
+                do SpriteButtonRActive.draw(atX, atY);
+            }
         }
         return;
     }

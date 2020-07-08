@@ -86,9 +86,9 @@ class LevelThree {
         do HelperLib.createLadder(17, 14, 4);
 
         // draw button 1
-        do HelperLib.createButton(switchOne, 30, 14);
+        do HelperLib.createButton(false, switchOne, 30, 14);
         // draw button 2
-        do HelperLib.createButton(switchTwo, 1, 6);
+        do HelperLib.createButton(true, switchTwo, 1, 6);
 
         //// draw the gates
         // triggered by switchOne
