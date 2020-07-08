@@ -1,10 +1,12 @@
 class LevelTwo {
-    field int frame;
-    field boolean switchOne;
+    field int GOAL_X, GOAL_Y;
+    field boolean switchOne, frame;
     field Player player;
 
     constructor LevelTwo new() {
-        let frame = 0;
+        let GOAL_X = 30;
+        let GOAL_Y = 5;
+        let frame = true;
         let switchOne = false;
         let player = Player.new(1,14);
         return this;
@@ -16,24 +18,11 @@ class LevelTwo {
     }
 
     method void renderEnvironment() {
-        var int floorSize;
-        var int floorCounter;
-        let floorSize = 32;
-        let floorCounter = 0;
-
         // draw the bottom floor
-        while (floorCounter < floorSize) {
-            do SpriteBrick.draw(floorCounter, 15);
-            let floorCounter = floorCounter + 1;
-        }
-
-        let floorCounter = 13;
+        do HelperLib.createFloor(0, 15, 32);
 
         // draw the bottom-mid floor
-        while (floorCounter < floorSize) {
-            do SpriteBrick.draw(floorCounter, 10);
-            let floorCounter = floorCounter + 1;
-        }
+        do HelperLib.createFloor(13, 10, 19);
 
         // draw the bounding box
         do SpriteBrick.draw(11, 10);
@@ -51,25 +40,13 @@ class LevelTwo {
         }
 
         // Draw Ladder 1
-        do SpriteLadder.draw(12, 14);
-        do SpriteLadder.draw(12, 13);
-        do SpriteLadder.draw(12, 12);
-        do SpriteLadder.draw(12, 11);
-        do SpriteLadder.draw(12, 10);
+        do HelperLib.createLadder(12, 14, 5);
         
-        let floorCounter = 22;
-
-        // draw the top-mid floor
-        while (floorCounter < floorSize) {
-            do SpriteBrick.draw(floorCounter, 6);
-            let floorCounter = floorCounter + 1;
-        }
+        // Draw top-mid floor
+        do HelperLib.createFloor(22, 6, 10);
 
         // Draw Ladder 2
-        do SpriteLadder.draw(21, 9);
-        do SpriteLadder.draw(21, 8);
-        do SpriteLadder.draw(21, 7);
-        do SpriteLadder.draw(21, 6);
+        do HelperLib.createLadder(21, 9, 4);
 
         // draw bounding box
         do SpriteBrick.draw(28, 4);
@@ -80,7 +57,7 @@ class LevelTwo {
 
         // draw the barrier
         if (~switchOne) {
-            if (frame = 0) {
+            if (frame) {
                 do SpriteZap.draw(28, 5);
             } else {
                 do SpriteZapAlt.draw(28, 5);
@@ -90,7 +67,7 @@ class LevelTwo {
         }
 
         // draw the goal
-        do SpriteEgg.draw(30,5);
+        do SpriteEgg.draw(GOAL_X, GOAL_Y);
 
         return;
     }
@@ -99,19 +76,12 @@ class LevelTwo {
         do player.clear();
         do renderEnvironment();
         do player.render();
-        let frame = toggleFrame(frame);
+        let frame = HelperLib.toggleBool(frame);
         return;
     }
 
     method Player getPlayer() {
         return player;
-    }
-
-    method int toggleFrame(int sourceFrame) {
-        if (sourceFrame = 0) {
-            return 1;
-        }
-        return 0;
     }
 
     method boolean hitTest(int checkCondition) {
@@ -125,8 +95,7 @@ class LevelTwo {
         // Check win condition
         if (checkCondition=0) {
             // If player on goal
-            if ((player.getX() = 30) & (player.getY() = 5)) {
-                // do Output.printString("clr");
+            if ((player.getX() = GOAL_X) & (player.getY() = GOAL_Y)) {
                 return true;
             } else {
                 
@@ -204,18 +173,11 @@ class LevelTwo {
         // Hitting switch
         if (checkCondition=5) {
             if ((player.getX() = 11) & (player.getY() = 9)) {
-                let switchOne = toggleSwitchOne(switchOne);
+                let switchOne = HelperLib.toggleBool(switchOne);
                 return true;
             }
         }
 
         return false;
-    }
-
-    method boolean toggleSwitchOne(boolean sourceState) {
-        if (sourceState) {
-            return false;
-        }
-        return true;
     }
 }

@@ -19,13 +19,7 @@ class Game {
 
             while(~exit) {
                 // UI
-                do Output.moveCursor(0, 0);
-                do Output.printString("MOVES MADE:");
-                do Output.printInt(counter);
-                do Output.moveCursor(0, 32);
-                do Output.printString("LEVEL:");
-                do Output.printInt(world.getLevel() + 1);
-                do Output.moveCursor(1, 0);
+                do renderUI();
 
                 // Keypress listener
                 while(key=0) {
@@ -128,5 +122,16 @@ class Game {
         let action = 0;
 
         return false;
+    }
+
+    method void renderUI() {
+        do Output.moveCursor(0, 0);
+        do Output.printString("MOVES MADE:");
+        do Output.printInt(counter);
+        do Output.moveCursor(0, 32);
+        do Output.printString("LEVEL:");
+        do Output.printInt(world.getLevel() + 1);
+        do Output.moveCursor(1, 0);
+        return;
     }
 }

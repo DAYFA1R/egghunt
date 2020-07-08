@@ -1,9 +1,10 @@
 class LevelOne {
-    field boolean complete;
+    field int GOAL_X, GOAL_Y;
     field Player player;
 
     constructor LevelOne new() {
-        let complete = false;
+        let GOAL_X = 30;
+        let GOAL_Y = 9;
         let player = Player.new(1,14);
         return this;
     }
@@ -14,34 +15,16 @@ class LevelOne {
     }
 
     method void renderEnvironment() {
-        var int floorSize;
-        var int floorCounter;
-        let floorSize = 32;
-        let floorCounter = 0;
-
         // draw the bottom floor
-        while (floorCounter < floorSize) {
-            do SpriteBrick.draw(floorCounter, 15);
-            let floorCounter = floorCounter + 1;
-        }
-
-        let floorSize = 32;
-        let floorCounter = 13;
+        do HelperLib.createFloor(0, 15, 32);
 
         // draw the top floor
-        while (floorCounter < floorSize) {
-            do SpriteBrick.draw(floorCounter, 10);
-            let floorCounter = floorCounter + 1;
-        }
+        do HelperLib.createFloor(13, 10, 19);
 
         // Draw Ladder 1
-        do SpriteLadder.draw(12, 14);
-        do SpriteLadder.draw(12, 13);
-        do SpriteLadder.draw(12, 12);
-        do SpriteLadder.draw(12, 11);
-        do SpriteLadder.draw(12, 10);
+        do HelperLib.createLadder(12, 14, 5);
         
-        do SpriteEgg.draw(30,9);
+        do SpriteEgg.draw(GOAL_X, GOAL_Y);
 
         return;
     }
@@ -68,9 +51,7 @@ class LevelOne {
         // Check win condition
         if (checkCondition=0) {
             // If player on goal
-            if ((player.getX() = 30) & (player.getY() = 9)) {
-                // do Output.printString("clr");
-                let complete = true;
+            if ((player.getX() = GOAL_X) & (player.getY() = GOAL_Y)) {
                 return true;
             } else {
                 

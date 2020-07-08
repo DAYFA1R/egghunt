@@ -6,4 +6,31 @@ class HelperLib {
     function int locationCalc(int atX, int atY) {
         return (32 * (atY * 16)) + ((atX * 16) / 16);
     }
+
+    function boolean toggleBool(boolean sourceCondition) {
+        if (sourceCondition) {
+            return false;
+        }
+        return true;
+    }
+
+    function void createFloor(int atX, int atY, int length) {
+        var int counter;
+        let counter = 0;
+        while (counter < length) {
+            do SpriteBrick.draw(atX + counter, atY);
+            let counter = counter + 1;
+        }
+        return;
+    }
+
+    function void createLadder(int atX, int atY, int height) {
+        var int counter;
+        let counter = 0;
+        while (counter < height) {
+            do SpriteLadder.draw(atX, atY - counter);
+            let counter = counter + 1;
+        }
+        return;
+    }
 }
