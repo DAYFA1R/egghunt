@@ -5,7 +5,7 @@ class Game {
     constructor Game new() {
         let action = 0;
         let counter = 0;
-        let world = World.new(0);
+        let world = World.new(2);
         return this;
     }
 

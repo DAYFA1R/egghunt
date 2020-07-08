@@ -1,0 +1,168 @@
+class LevelThree {
+    field int GOAL_X, GOAL_Y;
+    field boolean switchOne, switchTwo, frame;
+    field Player player;
+
+    constructor LevelThree new() {
+        let GOAL_X = 15;
+        let GOAL_Y = 3;
+        let frame = true;
+        let switchOne = false;
+        let switchTwo = false;
+        let player = Player.new(1,14);
+        return this;
+    }
+
+    method void dispose() {
+        do Memory.deAlloc(this);
+        return;
+    }
+
+    method void renderEnvironment() {
+        // draw 1F
+        do HelperLib.createFloor(0, 15, 32);
+
+        // draw 1F W1
+        do SpriteBrick.draw(15, 12);
+        do SpriteBrick.draw(15, 13);
+        // draw 1F W2
+        do SpriteBrick.draw(31, 13);
+        do SpriteBrick.draw(31, 14);
+
+        // draw 2F1
+        do HelperLib.createFloor(5, 11, 8);
+        // draw 2F2
+        do HelperLib.createFloor(14, 11, 3);
+        // draw 2F3
+        do HelperLib.createFloor(18, 11, 8);
+
+        // draw 2F W1
+        do SpriteBrick.draw(15, 9);
+        do SpriteBrick.draw(15, 8);
+        do SpriteBrick.draw(15, 7);
+        do SpriteBrick.draw(15, 6);
+        do SpriteBrick.draw(15, 5);
+
+        // draw 2F W2
+        do SpriteBrick.draw(20, 8);
+        do SpriteBrick.draw(20, 9);
+
+        // draw 3F1
+        do HelperLib.createFloor(0, 7, 5);
+        // draw 3F2
+        do HelperLib.createFloor(6, 7, 5);
+        // draw 3F3
+        do HelperLib.createFloor(20, 7, 5);
+        // draw 3F W
+        do SpriteBrick.draw(0, 6);
+        do SpriteBrick.draw(0, 5);
+        do SpriteBrick.draw(0, 4);
+        do SpriteBrick.draw(1, 4);
+        do SpriteBrick.draw(2, 4);
+        do SpriteBrick.draw(3, 4);
+        do SpriteBrick.draw(3, 5);
+
+        // draw 4F
+        do HelperLib.createFloor(11, 4, 9);
+        // draw 4F C
+        do HelperLib.createFloor(13, 1, 5);
+        do SpriteBrick.draw(13, 2);
+        do SpriteBrick.draw(13, 3);
+        do SpriteBrick.draw(17, 2);
+
+        // Draw Ladder 3F1
+        do HelperLib.createLadder(10, 6, 3);
+        // Draw Ladder 3F2
+        do HelperLib.createLadder(20, 6, 3);
+
+        // Draw Ladder 2F1
+        do HelperLib.createLadder(5, 10, 4);
+        // Draw Ladder 2F2
+        do HelperLib.createLadder(25, 10, 4);
+
+        // Draw Ladder 1F1
+        do HelperLib.createLadder(13, 14, 4);
+        // Draw Ladder 1F2
+        do HelperLib.createLadder(17, 14, 4);
+
+        // draw button 1
+        do HelperLib.createButton(switchOne, 30, 14);
+        // draw button 2
+        do HelperLib.createButton(switchTwo, 1, 6);
+
+        //// draw the gates
+        // triggered by switchOne
+        do HelperLib.createGate(switchOne, 15, 14, frame);
+        do HelperLib.createGate(switchOne, 3, 6, frame);
+        // alt pos
+        do HelperLib.createGate(~switchOne, 17, 3, frame);
+        do HelperLib.createGate(~switchOne, 15, 10, frame);
+
+        // triggered by switchTwo
+        do HelperLib.createGate(switchTwo, 20, 10, frame);
+
+        // draw the goal
+        do SpriteEgg.draw(GOAL_X, GOAL_Y);
+        return;
+    }
+
+    method void render() {
+        do player.clear();
+        do renderEnvironment();
+        do player.render();
+        let frame = HelperLib.toggleBool(frame);
+        return;
+    }
+
+    method Player getPlayer() {
+        return player;
+    }
+
+    method boolean hitTest(int checkCondition) {
+        // Check win condition
+        if (checkCondition=0) {
+            // If player on goal
+            if ((player.getX() = GOAL_X) & (player.getY() = GOAL_Y)) {
+                return true;
+            } else {
+                
+            }
+        }
+
+        // Moving Up
+        if (checkCondition=1) {
+        }
+
+        // Moving Down
+        if (checkCondition=2) {
+        }
+
+        // Moving Left
+        if (checkCondition=3) {
+            if (
+                (
+                    (player.getY() = 14)
+                )
+            ) {
+                return true;
+            }
+        }
+
+        // Moving Right
+        if (checkCondition=4) {
+            if (player.getY() = 14) {
+                return true;
+            }
+        }
+
+        // Hitting switch
+        if (checkCondition=5) {
+            // if ((player.getX() = 11) & (player.getY() = 9)) {
+            //     let switchOne = HelperLib.toggleBool(switchOne);
+            //     return true;
+            // }
+        }
+
+        return false;
+    }
+}
