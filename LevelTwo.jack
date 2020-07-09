@@ -33,7 +33,7 @@ class LevelTwo {
         do SpriteBrick.draw(9, 7);
 
         // draw the button
-        do HelperLib.createButton(false, switchOne, 10, 9);
+        do HelperLib.createButton(true, switchOne, 10, 9);
 
         // Draw Ladder 1
         do HelperLib.createLadder(12, 14, 5);

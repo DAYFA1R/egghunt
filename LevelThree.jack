@@ -131,17 +131,70 @@ class LevelThree {
 
         // Moving Up
         if (checkCondition=1) {
+            // Ladder 1
+            if ((player.getX() = 13) & (player.getY() > 10)) {
+                return true;
+            }
+            // Ladder 2
+            if ((player.getX() = 17) & (player.getY() > 10)) {
+                return true;
+            }
         }
 
         // Moving Down
         if (checkCondition=2) {
+            // Ladder 1
+            if (
+                (player.getX() = 13) &
+                (player.getY() > 8) &
+                (player.getY() < 14)
+            ) {
+                return true;
+            }
+            // Ladder 2
+            if (
+                (player.getX() = 17) &
+                (player.getY() > 8) &
+                (player.getY() < 14)
+            ) {
+                return true;
+            }
         }
 
         // Moving Left
         if (checkCondition=3) {
             if (
+                // Floor 1 
                 (
-                    (player.getY() = 14)
+                    (player.getY() = 14) &
+                    switchOne
+                ) |
+                (
+                    (player.getY() = 14) &
+                    (
+                        (player.getX() < 15) |
+                        (player.getX() > 16)
+                    ) &
+                    ~switchOne
+                ) |
+                // Floor 2
+                // switch one is not pressed
+                (
+                    (player.getY() = 10) &
+                    (player.getX() > 5) &
+                    ~switchOne
+                ) |
+                // switch one is pressed
+                (
+                    (player.getY() = 10) &
+                    (
+                        (
+                            (player.getX() > 16) |
+                            (player.getX() < 15)
+                        ) &
+                        (player.getX() > 5)
+                    ) &
+                    switchOne
                 )
             ) {
                 return true;
@@ -150,17 +203,59 @@ class LevelThree {
 
         // Moving Right
         if (checkCondition=4) {
-            if (player.getY() = 14) {
+            if (
+                //// Floor 1
+                // Switch one is not pressed
+                (
+                    (player.getY() = 14) &
+                    (
+                        (player.getX() < 14) |
+                        (player.getX() > 15)
+                    ) &
+                    (player.getX() < 29) &
+                    ~switchOne
+                ) |
+                // Switch one is pressed
+                (
+                    (player.getY() = 14) &
+                    (player.getX() < 29) &
+                    switchOne
+                ) |
+                //// Floor 2
+                // Switch one is not pressed
+                // Switch two is not pressed
+                (
+                    (player.getY() = 10) &
+                    (player.getX() < 19) &
+                    ~switchOne &
+                    ~switchTwo
+                ) |
+                // Switch one is pressed
+                // Switch two is not pressed
+                (
+                    (player.getY() = 10) &
+                    (
+                        (player.getX() < 14) &
+                        (player.getX() > 4)
+                    ) |
+                    (
+                        (player.getX() > 15) &
+                        (player.getX() < 19)
+                    ) &
+                    switchOne &
+                    ~switchTwo
+                )
+            ) {
                 return true;
             }
         }
 
         // Hitting switch
         if (checkCondition=5) {
-            // if ((player.getX() = 11) & (player.getY() = 9)) {
-            //     let switchOne = HelperLib.toggleBool(switchOne);
-            //     return true;
-            // }
+            if ((player.getX() = 29) & (player.getY() = 14)) {
+                let switchOne = HelperLib.toggleBool(switchOne);
+                return true;
+            }
         }
 
         return false;
