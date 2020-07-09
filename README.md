@@ -4,9 +4,13 @@ _Written for Project 9 of nand2Tetris_
 
 ### Controls:
 **Arrow Left:**     Move left
+
 **Arrow Right:**    Move right
+
 **Arrow Up:**       Climb ladder
+
 **Arrow Down:**     Descend Ladder
+
 **Spacebar:**       Hit switch
 
 > Thanks for taking a look!
