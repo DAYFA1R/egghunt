@@ -61,6 +61,12 @@ class Game {
             do world.setNextLevel();
         }
 
+        do complete();
+
+        while(true) {
+            // loop infinite
+        }
+
         return;
     }
 
@@ -134,6 +140,20 @@ class Game {
         do Output.printString("LEVEL:");
         do Output.printInt(world.getLevel() + 1);
         do Output.moveCursor(1, 0);
+        return;
+    }
+
+    method void complete() {
+        do Output.moveCursor(8, 17);
+        do Output.printString("Thank you for playing EGGHUNT");
+        do Output.moveCursor(10, 17);
+        do Output.printString("You completed it in ");
+        do Output.printInt(counter);
+        do Output.printString(" moves!");
+        do Output.moveCursor(12, 14);
+        do Output.printString("Can you get it done in fewer moves?");
+        do Output.moveCursor(18, 18);
+        do Output.printString("github.com/DAYFA1R/egghunt");
         return;
     }
 }
