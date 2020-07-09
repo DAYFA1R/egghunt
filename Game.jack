@@ -5,7 +5,7 @@ class Game {
     constructor Game new() {
         let action = 0;
         let counter = 0;
-        let world = World.new(2);
+        let world = World.new(0);
         return this;
     }
 
@@ -128,7 +128,9 @@ class Game {
         do Output.moveCursor(0, 0);
         do Output.printString("MOVES MADE:");
         do Output.printInt(counter);
-        do Output.moveCursor(0, 32);
+        do Output.moveCursor(0, 26);
+        do Output.printString("EGGHUNT");
+        do Output.moveCursor(0, 50);
         do Output.printString("LEVEL:");
         do Output.printInt(world.getLevel() + 1);
         do Output.moveCursor(1, 0);

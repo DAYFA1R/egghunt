@@ -97,7 +97,11 @@ class LevelTwo {
                 return true;
             }
             // Ladder 2
-            if ((player.getX() = 21) & (player.getY() > 5)) {
+            if (
+                (player.getX() = 21) &
+                (player.getY() > 5) &
+                (player.getY() < 10)
+            ) {
                 return true;
             }
         }
