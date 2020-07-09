@@ -131,19 +131,27 @@ class LevelThree {
 
         // Moving Up
         if (checkCondition=1) {
-            // Ladder 1
+            // Ladder 1F1
             if ((player.getX() = 13) & (player.getY() > 10)) {
                 return true;
             }
-            // Ladder 2
+            // Ladder 1F2
             if ((player.getX() = 17) & (player.getY() > 10)) {
+                return true;
+            }
+            // Ladder 2F1
+            if ((player.getX() = 5) & (player.getY() > 6)) {
+                return true;
+            }
+            // Ladder 2F2
+            if ((player.getX() = 25) & (player.getY() > 6)) {
                 return true;
             }
         }
 
         // Moving Down
         if (checkCondition=2) {
-            // Ladder 1
+            // Ladder 1F1
             if (
                 (player.getX() = 13) &
                 (player.getY() > 8) &
@@ -151,11 +159,27 @@ class LevelThree {
             ) {
                 return true;
             }
-            // Ladder 2
+            // Ladder 1F2
             if (
                 (player.getX() = 17) &
                 (player.getY() > 8) &
                 (player.getY() < 14)
+            ) {
+                return true;
+            }
+            // Ladder 2F1
+            if (
+                (player.getX() = 5) &
+                (player.getY() > 5) &
+                (player.getY() < 10)
+            ) {
+                return true;
+            }
+            // Ladder 2F2
+            if (
+                (player.getX() = 25) &
+                (player.getY() > 5) &
+                (player.getY() < 10)
             ) {
                 return true;
             }
@@ -177,7 +201,7 @@ class LevelThree {
                     ) &
                     ~switchOne
                 ) |
-                // Floor 2
+                //// Floor 2
                 // switch one is not pressed
                 (
                     (player.getY() = 10) &
@@ -194,6 +218,19 @@ class LevelThree {
                         ) &
                         (player.getX() > 5)
                     ) &
+                    switchOne
+                ) |
+                //// Floor 3
+                // switch one is not pressed
+                (
+                    (player.getY() = 6) &
+                    (player.getX() > 4) &
+                    ~switchOne
+                ) |
+                // switch one is pressed
+                (
+                    (player.getY() = 6) &
+                    (player.getX() > 2) &
                     switchOne
                 )
             ) {
@@ -244,6 +281,39 @@ class LevelThree {
                     ) &
                     switchOne &
                     ~switchTwo
+                ) |
+                // Switch One is pressed
+                // Switch two is pressed
+                (
+                    (player.getY() = 10) &
+                    (
+                        (player.getX() < 14) |
+                        (
+                            (player.getX() > 15) &
+                            (player.getX() < 25)
+                        )
+                    ) &
+                    switchOne &
+                    switchTwo
+                ) |
+                // Switch one is not pressed
+                // Switch two is pressed
+                (
+                    (player.getY() = 10) &
+                    (player.getX() < 25) &
+                    switchTwo &
+                    ~switchOne
+                ) |
+                //// Floor 3
+                (
+                    (player.getY() = 6) &
+                    (
+                        (player.getX() < 10) |
+                        (
+                            (player.getX() < 25) &
+                            (player.getX() > 20)
+                        )
+                    )
                 )
             ) {
                 return true;
@@ -254,6 +324,10 @@ class LevelThree {
         if (checkCondition=5) {
             if ((player.getX() = 29) & (player.getY() = 14)) {
                 let switchOne = HelperLib.toggleBool(switchOne);
+                return true;
+            }
+            if ((player.getX() = 2) & (player.getY() = 6)) {
+                let switchTwo = HelperLib.toggleBool(switchTwo);
                 return true;
             }
         }
