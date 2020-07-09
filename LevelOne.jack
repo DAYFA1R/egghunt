@@ -24,6 +24,7 @@ class LevelOne {
         // Draw Ladder 1
         do HelperLib.createLadder(12, 14, 5);
         
+        // Draw the goal
         do SpriteEgg.draw(GOAL_X, GOAL_Y);
 
         return;
@@ -41,13 +42,6 @@ class LevelOne {
     }
 
     method boolean hitTest(int checkCondition) {
-        // DEBUG purposes
-        // do Output.printInt(player.getX());
-        // do Output.printString(",");
-        // do Output.printInt(player.getY());
-        // do Output.printString(" ");
-        // end of DEBUG
-
         // Check win condition
         if (checkCondition=0) {
             // If player on goal

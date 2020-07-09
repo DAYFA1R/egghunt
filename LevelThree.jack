@@ -106,6 +106,7 @@ class LevelThree {
         do player.clear();
         do renderEnvironment();
         do player.render();
+        // toggle frame for 2-frame animation sprites
         let frame = HelperLib.toggleBool(frame);
         return;
     }
@@ -208,11 +209,13 @@ class LevelThree {
         // Moving Left
         if (checkCondition=3) {
             if (
-                // Floor 1 
+                //// Floor 1
+                // switch one is pressed
                 (
                     (player.getY() = 14) &
                     switchOne
                 ) |
+                // switch one is not pressed
                 (
                     (player.getY() = 14) &
                     (
@@ -368,10 +371,12 @@ class LevelThree {
 
         // Hitting switch
         if (checkCondition=5) {
+            // switch one handler
             if ((player.getX() = 29) & (player.getY() = 14)) {
                 let switchOne = HelperLib.toggleBool(switchOne);
                 return true;
             }
+            // switch two handler
             if ((player.getX() = 2) & (player.getY() = 6)) {
                 let switchTwo = HelperLib.toggleBool(switchTwo);
                 return true;

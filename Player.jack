@@ -85,9 +85,4 @@ class Player {
     method int getY() {
         return y;
     }
-
-    // method void setFacingRight(boolean isFacingRight) {
-    //     let facingRight = isFacingRight;
-    //     return;
-    // }
 }

@@ -64,6 +64,7 @@ class LevelTwo {
         do player.clear();
         do renderEnvironment();
         do player.render();
+        // toggle frame for 2-frame animation sprites
         let frame = HelperLib.toggleBool(frame);
         return;
     }
@@ -73,13 +74,6 @@ class LevelTwo {
     }
 
     method boolean hitTest(int checkCondition) {
-        // DEBUG purposes
-        // do Output.printInt(player.getX());
-        // do Output.printString(",");
-        // do Output.printInt(player.getY());
-        // do Output.printString(" ");
-        // end of DEBUG
-
         // Check win condition
         if (checkCondition=0) {
             // If player on goal
