@@ -20,8 +20,4 @@ class SpriteEgg {
         do Memory.poke(memAddress+480, 4080);
         return;
     }
-
-    function void clear(int atX, int atY) {
-        return;
-    }
 }

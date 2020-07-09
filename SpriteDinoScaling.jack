@@ -1,0 +1,23 @@
+class SpriteDinoScaling {
+    function void draw(int atX, int atY) {
+        var int memAddress;
+        let memAddress = 16384 + HelperLib.locationCalc(atX, atY);
+        do Memory.poke(memAddress+0, 384);
+        do Memory.poke(memAddress+32, 576);
+        do Memory.poke(memAddress+64, 1056);
+        do Memory.poke(memAddress+96, 4080);
+        do Memory.poke(memAddress+128, 8184);
+        do Memory.poke(memAddress+160, 15420);
+        do Memory.poke(memAddress+192, 15996);
+        do Memory.poke(memAddress+224, 32766);
+        do Memory.poke(memAddress+256, -25543);
+        do Memory.poke(memAddress+288, 32382);
+        do Memory.poke(memAddress+320, 8184);
+        do Memory.poke(memAddress+352, 15420);
+        do Memory.poke(memAddress+384, 15996);
+        do Memory.poke(memAddress+416, 8184);
+        do Memory.poke(memAddress+448, 1632);
+        do Memory.poke(memAddress+480, 3696);
+        return;
+    }
+}

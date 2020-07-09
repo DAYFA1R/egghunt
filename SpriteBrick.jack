@@ -20,8 +20,4 @@ class SpriteBrick {
         do Memory.poke(memAddress+480, 0);
         return;
     }
-
-    function void clear() {
-        return;
-    }
 }

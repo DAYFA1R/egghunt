@@ -1,0 +1,23 @@
+class SpriteDinoAlt {
+    function void draw(int atX, int atY) {
+        var int memAddress;
+        let memAddress = 16384 + HelperLib.locationCalc(atX, atY);
+        do Memory.poke(memAddress+0, 128);
+        do Memory.poke(memAddress+32, 320);
+        do Memory.poke(memAddress+64, 544);
+        do Memory.poke(memAddress+96, 8176);
+        do Memory.poke(memAddress+128, 12120);
+        do Memory.poke(memAddress+160, 8028);
+        do Memory.poke(memAddress+192, 4092);
+        do Memory.poke(memAddress+224, 15932);
+        do Memory.poke(memAddress+256, 20464);
+        do Memory.poke(memAddress+288, 15836);
+        do Memory.poke(memAddress+320, 2186);
+        do Memory.poke(memAddress+352, 7564);
+        do Memory.poke(memAddress+384, 12248);
+        do Memory.poke(memAddress+416, 8176);
+        do Memory.poke(memAddress+448, 1632);
+        do Memory.poke(memAddress+480, 1904);
+        return;
+    }
+}

@@ -20,8 +20,4 @@ class SpriteLadder {
         do Memory.poke(memAddress+480, 28686);
         return;
     }
-
-    function void clear(int atX, int atY) {
-        return;
-    }
 }
